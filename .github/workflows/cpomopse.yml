@@ -1,0 +1,33 @@
+name: Run Compose Stack
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  run-docker-compose:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Start Docker Compose stack
+        run: |
+          docker-compose up -d
+
+      - name: Check running containers
+        run: docker ps
+
+      - name: Run tests (Optional)
+        run: |
+          curl -f http://localhost:7777 || exit 1
+
+      - name: Stop and clean up
+        if: always()
+        run: docker-compose down

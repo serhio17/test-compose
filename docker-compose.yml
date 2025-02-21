@@ -1,0 +1,10 @@
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "7777:80"
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mysuperpassword
