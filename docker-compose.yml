@@ -5,6 +5,8 @@ services:
       - "7777:80"
   db:
     image: postgres:16
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mysuperpassword
