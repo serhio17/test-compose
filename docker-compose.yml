@@ -3,6 +3,7 @@ services:
     image: nginx:latest
     ports:
       - "7777:80"
+
   psql16:
     image: postgres:16
     ports:
